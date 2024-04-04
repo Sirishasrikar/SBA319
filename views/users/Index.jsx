@@ -1,0 +1,44 @@
+//keepSignedIn
+
+const React = require('react');
+const DefaultLayout = require('../layout/Default')
+
+class Index extends React.Component {
+    render() {
+        const { users } = this.props;
+        
+
+        return (
+            <DefaultLayout title={"Users Index Page"}>
+                <nav>
+                    <a href="/users/new">Create a New <User></User></a>
+                </nav>
+                <ul>
+                    {users.map((fuser, i) => {
+                        return (
+                            <li>
+                                The {' '}
+                                <a href={`/users/${user._id}`}>
+                                    {user.name}
+                                </a> {' '}
+                                is {user.color} <br></br>
+                                {user.keepSignedIn
+                                ? `Keep Signed In?`
+                            :   `NO`}
+                            <br />
+                            <a href={`/users/${user._id}/edit`}>Edit This User</a>
+                            <form action={`/users/${user._id}?_method=DELETE`} method="POST">
+                                <input type="submit" value="DELETE"/>
+                            </form>
+                            </li>
+                        )
+                    })
+
+                    }
+                </ul>
+            </DefaultLayout>
+        )
+    }
+}
+
+module.exports = Index;
