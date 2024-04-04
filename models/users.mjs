@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     },
     uname:{
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     pword:{
         type: String,
