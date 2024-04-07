@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import db from "./db/conn.mjs";
 import userRoutes from "./controllers/user.mjs";
 import postRoutes from "./controllers/post.mjs";
-import commentRoutes from "./controllers/comment.mjs"
+import resourceRoutes from "./controllers/resource.mjs"
 import jsxViewEngine from 'jsx-view-engine';
 import methodOverride from 'method-override';
+// import './style/styles.css';
 dotenv.config();
 
 
@@ -26,12 +27,13 @@ app.engine('jsx', jsxViewEngine());
 
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'));
+app.use(express.static('./styles'));
 
 // ================ Routes ================
 
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
-app.use("/comments", commentRoutes);
+app.use("/resources", resourceRoutes);
 
 app.get("/", (req, res)=>{
     res.send(
@@ -39,7 +41,7 @@ app.get("/", (req, res)=>{
         This is my Main Page <br/>
         <a href='/users'>users</a><br/>
         <a href='/posts'>posts</a><br/>
-        <a href='/comments'>comments</a>
+        <a href='/resources'>resources</a>
         </div>`
     );
 });

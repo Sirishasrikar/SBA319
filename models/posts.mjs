@@ -1,17 +1,24 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-    journal:{
+    title: {
         type: String,
         required: true
     },
-    mood:{
+    content: {
         type: String,
         required: true
     },
-   
-})
+    author: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required:true
+    }
+});
 
-const Post = mongoose.model('post', postSchema);
+const Post = mongoose.model('Post', postSchema);
 
 export default Post;

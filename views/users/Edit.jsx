@@ -10,10 +10,10 @@ class Edit extends React.Component {
                 {/* See the Layout takes in a prop called Title and we pass Edit Page to it  note: comments can't go first or last in  jsx return*/}
                 {/* form is not complete we will do that below*/}
                 <form action={`/users/${this.props.user._id}?_method=PUT`} method="POST">
-                    Name: <input type="text" name="name" defaultValue={this.props.user.name} /><br />
-                    Color: <input type="text" name="color" defaultValue={this.props.user.color} /><br />
-                    Keep Signed In:
-                    {this.props.user.keepSignedIn ? <input type="checkbox" name="keepSignedIn" defaultChecked /> : <input type="checkbox" name="keepSignedIn" />}
+                    First Name: <input type="text" name="fname" defaultValue={this.props.user.fname} /><br />
+                    Last Name: <input type="text" name="lname" defaultValue={this.props.user.lname} /><br />
+                    E Mail:<input type="email" name="email" defaultValue={this.props.user.email} /><br />
+                    Password:<input type="password" name="pword" defaultValue={this.props.user.pword} /><br />
                     <br />
                     <input type="submit" value="Submit Changes" />
                 </form>

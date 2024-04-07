@@ -11,21 +11,16 @@ class Index extends React.Component {
         return (
             <DefaultLayout title={"Users Index Page"}>
                 <nav>
-                    <a href="/users/new">Create a New <User></User></a>
+                    <a href="/users/new">Create a New User</a>
                 </nav>
                 <ul>
-                    {users.map((fuser, i) => {
+                    {users.map((user, i) => {
                         return (
-                            <li>
-                                The {' '}
-                                <a href={`/users/${user._id}`}>
-                                    {user.name}
-                                </a> {' '}
-                                is {user.color} <br></br>
-                                {user.keepSignedIn
-                                ? `Keep Signed In?`
-                            :   `NO`}
-                            <br />
+                            <li key={user._id}>
+                                The user, having a first name "{user.fname}" and last name "{user.lname}", is having an username as "{user.uname}".
+                                <br />
+                                {user.keepSignedIn ? `Yes`:  `No`}
+                                <br/>
                             <a href={`/users/${user._id}/edit`}>Edit This User</a>
                             <form action={`/users/${user._id}?_method=DELETE`} method="POST">
                                 <input type="submit" value="DELETE"/>

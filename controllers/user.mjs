@@ -5,74 +5,103 @@ import db from "../db/conn.mjs";
 
 // const users = require('../models/users');
 
-// GET route for retrieving users
-// router.route('/')
-// .get((req, res) => {
-//     res.json(usersData);
-// })
+// I- INDEX GET route for retrieving users
+router.get("/", async (req, res) => {
+    try {
+        const foundUsers = await User.find({});
+        res.status(200).render('users/Index', { users: foundUsers })
+        // res.status(200).send(foundUsers);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
 
-// .post((req, res, next) => {
-//     if (req.body.fname && req.body.lname && req.body.uname){
-//         if (usersData.find((u) => u.uname == req.body.uname)) {
-//             res.json({ error: "Username Already Taken" });
-//             return;
-//         }
 
-//         const user = {
-//             id: usersData[usersData.length - 1].id + 1,
-//             fname: req.body.fname,
-//             lname: req.body.lname,
-//             uname: req.body.uname,
-//         };
+//N- New
 
-//         usersData.push(user);
-//         res.json(usersData[usersData.length -1]);
-//     } else res.json({error: "Insufficient data"});
+router.get('/new', (req, res) => {
+    res.render('users/New');
+})
 
-// });
 
-// router
-// .route("/:id")
-// .get((req, res) => {
-//     const user = usersData.find((u) => u.id == req.params.id);
-//     if (user) {
-//         res.json(user);
-//     } else {
-//         res.status(404).json({ error: "User not found" });
-//     }
-// })
+//D- Delete route
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        console.log(deletedUser);
+        res.status(200).redirect('/users');
+    } catch (err) {
+        res.status(400).send(err);
+    }
 
-//     .patch((req, res) => {
-//         const userId = req.params.id;
-//         const userIndex = usersData.findIndex((u) => u.id == userId);
+})
 
-//         if (userIndex !== -1) {
-//             for (const key in req.body) {
-//                 if (Object.hasOwnProperty.call(req.body, key)) {
-//                     usersData[userIndex][key] = req.body[key];
-//                 }
-//             }
-//             res.json(usersData[userIndex]);
-//         } else {
-//             res.status(404).json({ error: "User not found" });
-//         }
-//     })
-// //delete route
-// .delete((req, res, next) => {
-  
-//    console.log(`deleting user with id: ${req.body.id}`);
- 
-//     // the DELETE request route removes the indicated resources
-//     const user = usersData.find((u, i) => {
-//         if (u.id == req.params.id) {
-//             usersData.splice(i, 1);
-//             return true;
-//         }
-//     });
-//     if (usersData) res.json(usersData);
-//     else next();
+//U Update
+router.put("/:id", async (req, res) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true },
+        );
+        console.log(updatedUser)
+        res.redirect(`/users/${req.params.id}`);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
 
-// });
+//starting the post route so that we can see the things in the database
 
+router.post("/", async (req, res) => {
+
+    if (req.body.keepSignedIn === 'on') {//if checked, req.body.readyToEat()is set to 'on', 
+        req.body.keepSignedIn = true;
+    } else {
+        req.body.keepSignedIn = false;
+    }
+    // //this is useful when we have the user input form
+    try {
+        // Check if the username is already taken
+        const existingUser = await User.findOne({ uname: req.body.uname });
+        if (existingUser) {
+
+            return res.send(`
+                <script>
+                    alert("Username already taken");
+                    window.location.href = "users/New"; // Redirect to the create page
+                </script>
+                  `)
+        }
+        // Create the new user
+
+        const createdUser = await User.create(req.body);
+        res.status(201).send(createdUser);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+});
+
+// E - Edit     GET         UPDATE 
+
+router.get("/:id/edit", async (req, res) => {
+    try {
+        const foundUser = await User.findById(req.params.id);
+        res.status(200).render('users/Edit', { user: foundUser });
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
+// S - Show     GET         READ - display a specific element
+
+router.get('/:id', async (req, res) => {
+    try {
+        const foundUser = await User.findById(req.params.id);
+        res.render('users/Show', { user: foundUser });
+    } catch (err) {
+        res.status(400).send(err);
+    }
+
+})
 
 export default router;

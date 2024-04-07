@@ -12,13 +12,8 @@ const userSchema = new mongoose.Schema({
     uname:{
         type: String,
         required: true,
-        unique:true
-    },
+        },
     pword:{
-        type: String,
-        required: true
-    },
-    pword2:{
         type: String,
         required: true
     },
