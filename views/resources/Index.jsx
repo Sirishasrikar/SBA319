@@ -17,16 +17,15 @@ class Index extends React.Component {
                             <li key={i}>
                                 <div>
                                     Title:{resource.title}<br />
-                                    Category:{resource.category}<br />
                                     Description:{resource.description}<br />
-                                     Benefits:{resource.benefits}<br/>
+                                    Category:{resource.category}<br />
+                                    Instructions:{resource.instructions}<br/>
+                                    Benefits:{resource.benefits}<br/>
                                 </div>
-                                <br/>
-                                <br/>
-                                {/* <a href={`/resources/${resource._id}/edit`}>Edit This Resource</a>
+                               {/* <a href={`/resources/${resource._id}/edit`}>Edit This Resource</a> */}
                             <form action={`/resources/${resource._id}?_method=DELETE`} method="POST"><br />
-                                <input type="submit" value="DELETE"/>
-                            </form> */}
+                            <input type="submit" value="DELETE"/>
+                             </form>
                             </li>
                         );
                     })

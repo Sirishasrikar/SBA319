@@ -1,7 +1,7 @@
 // New.jsx
 const React = require('react');
 const DefaultLayout = require('../layout/Default');
-<link rel="stylesheet" href="/style.css" />
+{/* <link rel="stylesheet" href="/style.css" /> */}
 
 
 class New extends React.Component {

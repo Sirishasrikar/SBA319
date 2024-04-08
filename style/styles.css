@@ -1,40 +1,69 @@
-/* formStyles.css */
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* style.css */
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
     background-color: lightblue;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Main Content */
+.main-content {
     padding: 20px;
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Form Container */
+.form-container {
+    margin: 0 auto;
+    max-width: 500px; /* Example maximum width */
+    padding: 20px;
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Example box shadow */
 }
 
-.form {
-    width: 300px;
+/* Form Elements */
+.form-container label {
+    display: block;
+    margin-bottom: 10px;
 }
 
-.input-field {
+.form-container input[type="text"],
+.form-container textarea {
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
-    border: none;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
 }
 
-.submit-button {
-    background-color: #007bff;
-    color: white;
+.form-container button[type="submit"] {
     padding: 10px 20px;
+    background-color: #333;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-.submit-button:hover {
-    cursor: pointer;
+.form-container button[type="submit"]:hover {
+    background-color: #555;
 }

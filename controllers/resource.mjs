@@ -56,4 +56,72 @@ router.get("/", async (req, res) => {
         res.status(400).send(err);
     }
 })
+
+//New
+
+router.get('/new', (req, res) => {
+    res.render('resources/New');
+})
+
+// D - Delete   DELETE    This permanently removes from the database
+
+router.delete("/:id", async (req, res) => {
+    try {
+        const deletedResource = await Resource.findByIdAndDelete(req.params.id);
+        console.log(deletedResource);
+        res.status(200).redirect('/resources');
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
+
+//U Update
+router.put("/:id", async (req, res) => {
+    try {
+        const updatedResource = await Resource.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true },
+        );
+        
+        res.redirect(`/resources/${req.params.id}`);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
+//starting the post route so that we can see the things in the database
+
+router.post("/", async (req, res) => {
+   
+    try {
+        const createdResource = await Resource.create(req.body);
+        res.status(200).send(createdResource);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
+
+// E - Edit     GET         UPDATE 
+
+router.get("/:id/edit", async (req, res) => {
+    try {
+        const foundResource = await Resource.findById(req.params.id);
+        res.status(200).render('resources/Edit', { resource: foundResource });
+    } catch (err) {
+        res.status(400).send(err);
+    }
+})
+// S - Show     GET         READ - display a specific element
+
+router.get('/:id', async (req, res) => {
+    try {
+        const foundResource = await Resource.findById(req.params.id);
+        res.render('resources/Show', { resource: foundResource });
+    } catch (err) {
+        res.status(400).send(err);
+    }
+
+})
+
+
 export default router;

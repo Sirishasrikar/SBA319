@@ -8,21 +8,21 @@ class New extends React.Component {
             <DefaultLayout title={"New Resource"}>
                 <h2>Create New Resource</h2>
                 <form action="/resources" method="POST">
-                    <label>Title:</label>
-                    <input type="text" name="title" /><br />
+                    Title:<input type="text" name="title" /><br /><br /><br />
 
-                    <label>Description:</label>
-                    <textarea name="description"></textarea><br />
+                    Description:<input type="text" name="description" /><br /><br /><br />
 
-                    <label>Category:</label>
-                    <input type="text" name="category" /><br />
+                    Category:<input type="text" name="category" /><br /><br /><br />
 
-                    <label>Benefits:</label>
-                    <textarea name="benefits"></textarea><br />
+                    Instructions:<input type="text" name="instructions" /><br /><br /><br />
 
-                    <input type="submit" value="Create" />
+                    Benefits:<input type="text" name="benefits" /><br /><br /><br />
+
+                    <input type="submit" name="" value="Create" />
                 </form>
+
             </DefaultLayout>
+
         );
     }
 }

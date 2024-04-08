@@ -16,5 +16,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "esm": "^3.2.25"
+  }
 }

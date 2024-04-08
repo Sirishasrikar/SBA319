@@ -71,7 +71,7 @@ router.post("/", async (req, res) => {
                     alert("Username already taken");
                     window.location.href = "users/New"; // Redirect to the create page
                 </script>
-                  `)
+                `)
         }
         // Create the new user
 
