@@ -9,5 +9,5 @@ There are a validation for the username, and if the username already exists, the
 Basic css styling was provided for the main page, but the rest of the views, even though I have the css file, and I have linked it in DefaultLayout, its still not showing.
 I have created a different user for this project so that all of my database is not shared. 
 
-mongodb+srv://project-user:8zrubUmma4jkOG2u@cluster0.m8idgfd.mongodb.net/
+
 
