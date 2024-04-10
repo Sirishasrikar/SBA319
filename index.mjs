@@ -27,7 +27,7 @@ app.engine('jsx', jsxViewEngine());
 
 app.use(express.urlencoded({extended: false}))
 app.use(methodOverride('_method'));
-app.use(express.static('./style'));
+app.use(express.static('style'));
 
 // ================ Routes ================
 
